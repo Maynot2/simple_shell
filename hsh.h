@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
 
 void display_prompt(void);
 char **splitstr(char *);

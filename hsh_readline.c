@@ -7,8 +7,8 @@
 
 char *hsh_readline(void)
 {
-	char *buffer[1] = {NULL};
-	ssize_t size = 1;
+	char *buffer[0]; //= {NULL};
+	ssize_t size = 0;
 
 	if (getline(buffer, &size, stdin) == EOF)
 		exit(0);

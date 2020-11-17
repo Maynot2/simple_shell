@@ -11,6 +11,11 @@ int main(void)
 	{
 		display_prompt();
 		line = hsh_readline();
+		if (line == NULL)
+		{
+			printf("OK");
+			return (1);
+		}
 		id = fork();
 		if (id == 0)
 		{

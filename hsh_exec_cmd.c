@@ -8,10 +8,15 @@
 
 void hsh_exec_cmd(char **arguments)
 {
-	if (execve(arguments[0], arguments, NULL) == -1)
+	if (arguments[0] != NULL)
 	{
-		perror("Execution Error\n");
-		kill(getpid(), SIGTERM);
+		if (execve(arguments[0], arguments, NULL) == -1)
+		{
+			perror("Execution Error\n");
+			kill(getpid(), SIGTERM);
+		}
+	
 	}
+	kill(getpid(), SIGTERM);
 }
 
