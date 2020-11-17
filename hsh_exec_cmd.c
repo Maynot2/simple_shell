@@ -8,30 +8,32 @@
 
 void hsh_exec_cmd(char **arguments)
 {
-	int i = 0;
+	int i;
 	struct stat st;
 	char extern **environ;
-	char **arr = array_PATH(environ, arguments);
+	char **paths = array_PATH(environ, arguments);
 
-	if (arguments[0] != NULL)
+	if (!arguments[0])
+		kill(getpid(), SIGTERM);
+
+	if (execve(arguments[0], arguments, NULL) == -1)
 	{
-		if (execve(arguments[0], arguments, NULL) == -1)
+		printf("%s\n", arguments[0]);
+		i = 0;
+		while (paths[i])
 		{
-			while (arr[i])
+			if (stat(paths[i], &st) == 0)
 			{
-				if (stat(arr[i], &st) == 0)
+				arguments[0] = paths[i];
+				if (execve(arguments[0], arguments, NULL) == -1)
 				{
-					arguments[0] = arr[i];
-					if (execve(arguments[0], arguments, NULL) == -1)
-					{
-						perror("Execution Error\n");
-						kill(getpid(), SIGTERM);
-					}
+					perror(arguments[0]);
+					kill(getpid(), SIGTERM);
 				}
-				i++;
 			}
+			i++;
 		}
+		perror(arguments[0]);
+		kill(getpid(), SIGTERM);
 	}
-	kill(getpid(), SIGTERM);
 }
-
