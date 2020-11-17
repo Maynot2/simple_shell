@@ -13,6 +13,9 @@ char **splitstr(char *str)
 	int i, j;
 	int size = 8;
 
+	if (!str)
+		return (NULL);
+
 	ary = malloc(sizeof(char *) * size);
 	if (!ary)
 		exit(1);

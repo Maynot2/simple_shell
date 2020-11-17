@@ -4,9 +4,10 @@ int main(void)
 {
 	char **args;
 	char *line;
+	int status = 1;
 	pid_t id;
 
-	while (1)
+	while (status)
 	{
 		id = fork();
 		if (id == 0)
@@ -14,13 +15,13 @@ int main(void)
 			display_prompt();
 			line = hsh_readline();
 			args = splitstr(line);
-			hsh_exec_cmd(args);
+			status = hsh_exec_cmd(args);
 			free(line);
 			free(args);
 		}
 		else
 		{
-			wait(NULL);
+			wait(&status);
 		}
 	}
 
