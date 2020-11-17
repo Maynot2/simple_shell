@@ -1,4 +1,4 @@
-#include "hsh.c"
+#include "hsh.h"
 
 /**
  * display_prompt - display a prompt
@@ -7,6 +7,6 @@
 
 void display_prompt(void)
 {
-	if (write(STDOUT_FILENO, "$ ", 3) == -1) // display prompt
+	if (write(STDOUT_FILENO, "$ ", 3) == -1)
 		perror("Write Error\n");
 }
