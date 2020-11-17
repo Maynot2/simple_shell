@@ -16,22 +16,22 @@ void hsh_exec_cmd(char **arguments)
 	if (!arguments[0])
 		kill(getpid(), SIGTERM);
 
+	i = 0;
+	while (paths[i])
+	{
+		if (stat(paths[i], &st) == 0)
+		{
+			arguments[0] = paths[i];
+			if (execve(arguments[0], arguments, NULL) == -1)
+			{
+				perror(arguments[0]);
+				kill(getpid(), SIGTERM);
+			}
+		}
+		i++;
+	}
 	if (execve(arguments[0], arguments, NULL) == -1)
 	{
-		i = 0;
-		while (paths[i])
-		{
-			if (stat(paths[i], &st) == 0)
-			{
-				arguments[0] = paths[i];
-				if (execve(arguments[0], arguments, NULL) == -1)
-				{
-					perror(arguments[0]);
-					kill(getpid(), SIGTERM);
-				}
-			}
-			i++;
-		}
 		perror(arguments[0]);
 		kill(getpid(), SIGTERM);
 	}
