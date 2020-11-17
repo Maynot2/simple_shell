@@ -5,11 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 void display_prompt(void);
 char **splitstr(char *);
 char *hsh_readline(void);
-int hsh_exec_cmd(char **);
+void hsh_exec_cmd(char **);
 int _strlen(char *);
 char **splitstr(char *);
 

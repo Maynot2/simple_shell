@@ -11,6 +11,6 @@ char *hsh_readline(void)
 	ssize_t size = 1;
 
 	if (getline(buffer, &size, stdin) == EOF)
-		return (NULL);
+		exit(0);
 	return (buffer[0]);
 }

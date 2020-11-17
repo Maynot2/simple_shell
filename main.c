@@ -9,19 +9,19 @@ int main(void)
 
 	while (status)
 	{
+		display_prompt();
+		line = hsh_readline();
 		id = fork();
 		if (id == 0)
 		{
-			display_prompt();
-			line = hsh_readline();
 			args = splitstr(line);
-			status = hsh_exec_cmd(args);
+			hsh_exec_cmd(args);
 			free(line);
 			free(args);
 		}
 		else
 		{
-			wait(&status);
+			wait(NULL);
 		}
 	}
 
