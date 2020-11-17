@@ -18,7 +18,6 @@ void hsh_exec_cmd(char **arguments)
 
 	if (execve(arguments[0], arguments, NULL) == -1)
 	{
-		printf("%s\n", arguments[0]);
 		i = 0;
 		while (paths[i])
 		{
