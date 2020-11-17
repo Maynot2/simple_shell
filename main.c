@@ -11,6 +11,8 @@ int main(void)
 	{
 		display_prompt();
 		line = hsh_readline();
+		args = splitstr(line);
+		builtin(args[0]);
 		if (line == NULL)
 		{
 			printf("OK");
@@ -19,7 +21,6 @@ int main(void)
 		id = fork();
 		if (id == 0)
 		{
-			args = splitstr(line);
 			hsh_exec_cmd(args);
 			free(line);
 			free(args);

@@ -17,6 +17,9 @@ void hsh_exec_cmd(char **arguments)
 		kill(getpid(), SIGTERM);
 
 	i = 0;
+
+	//builtin(arguments[0]);
+
 	while (paths[i])
 	{
 		if (stat(paths[i], &st) == 0)
