@@ -3,10 +3,11 @@
 /**
  * builtin - call the right builtin function
  * @str: the built in command to call
+ * @environ: environnement variables
  * Return: 0 if it works
  **/
 
-int builtin(char *str)
+int builtin(char *str, char **environ)
 {
 	type_d cases[] = {
 		{"env", hsh_env},
@@ -30,7 +31,7 @@ int builtin(char *str)
 		}
 		if (same)
 		{
-			cases[i].f();
+			cases[i].f(environ);
 		}
 		i++;
 	}

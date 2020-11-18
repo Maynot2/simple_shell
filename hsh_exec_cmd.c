@@ -3,12 +3,12 @@
 /**
  * hsh_exec_cmd - exec a command
  * @arguments: array of arguments
+ * @environ: extern char env
  * Return: Nothing
  */
 
-void hsh_exec_cmd(char **arguments)
+void hsh_exec_cmd(char **arguments, char **environ)
 {
-	char extern** environ;
 
 	int i;
 	struct stat st;

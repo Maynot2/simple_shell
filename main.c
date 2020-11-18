@@ -3,10 +3,13 @@
 
 /**
  * main - main function of the hsh shell
+ * @argc: number of arguments
+ * @argv: char table of arguments
+ * @envp: externe char environ
  * Return: 0 when it works
  **/
 
-int main(void)
+int main(int argc, char *argv[], char *envp[])
 {
 	char **args;
 	char *line;
@@ -22,8 +25,8 @@ int main(void)
 		id = fork();
 		if (id == 0)
 		{
-			builtin(args[0]);
-			hsh_exec_cmd(args);
+			builtin(args[0], envp);
+			hsh_exec_cmd(args, envp);
 			free(line);
 			free(args);
 		}

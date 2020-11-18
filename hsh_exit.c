@@ -12,13 +12,16 @@ void hsh_exit(char *str)
 	int ex = 1;
 	int i;
 
-	for (i = 0; str[i] != '\0'; i++)
+	if (_strlen(str) >= 1)
 	{
-		if (str[i] != result[i])
+		for (i = 0; str[i] != '\0'; i++)
 		{
-			ex = 0;
+			if (str[i] != result[i])
+			{
+				ex = 0;
+			}
 		}
+		if (ex == 1)
+			exit(0);
 	}
-	if (ex == 1)
-		exit(0);
 }

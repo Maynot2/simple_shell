@@ -7,6 +7,6 @@
 
 void display_prompt(void)
 {
-	if (write(STDOUT_FILENO, "$ ", 3) == -1)
+	if (write(STDOUT_FILENO, "$ ", 2) == -1)
 		perror("Write Error\n");
 }

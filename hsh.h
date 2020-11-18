@@ -1,6 +1,8 @@
 #ifndef HSH_H
 #define HSH_H
 
+#define UNUSED(x) (void)x;
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,12 +20,12 @@ typedef struct format
 void display_prompt(void);
 char **splitstr(char *);
 char *hsh_readline(void);
-void hsh_exec_cmd(char **);
+void hsh_exec_cmd(char **arguments, char **envp);
 int _strlen(char *);
 char **splitstr(char *);
 char **array_PATH(char **env, char **buf);
-int builtin(char *str);
+int builtin(char *str, char **environ);
 void hsh_exit(char *str);
-void hsh_env();
+void hsh_env(char **environ);
 
 #endif

@@ -2,13 +2,13 @@
 
 /**
  * hsh_env - print the environnements vars
+ * @environ: extern var env
  * Return: None
  **/
 
-void hsh_env(void)
+void hsh_env(char **environ)
 {
 
-	char extern** environ;
 	int i, j;
 
 	for (i = 0; environ[i] != NULL; i++)
