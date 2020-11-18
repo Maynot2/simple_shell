@@ -1,25 +1,23 @@
 #include "hsh.h"
 
 /**
- * hsh_exec_cmd - exec a command 
+ * hsh_exec_cmd - exec a command
  * @arguments: array of arguments
  * Return: Nothing
  */
 
 void hsh_exec_cmd(char **arguments)
 {
+	char extern** environ;
+
 	int i;
 	struct stat st;
-	char extern **environ;
 	char **paths = array_PATH(environ, arguments);
 
 	if (!arguments[0])
 		kill(getpid(), SIGTERM);
 
 	i = 0;
-
-	//builtin(arguments[0]);
-
 	while (paths[i])
 	{
 		if (stat(paths[i], &st) == 0)

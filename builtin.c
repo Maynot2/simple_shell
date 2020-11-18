@@ -1,9 +1,15 @@
 #include "hsh.h"
 
+/**
+ * builtin - call the right builtin function
+ * @str: the built in command to call
+ * Return: 0 if it works
+ **/
+
 int builtin(char *str)
 {
 	type_d cases[] = {
-		{"exit", hsh_exit}, {"env", hsh_env},
+		{"env", hsh_env},
 		{NULL, NULL}};
 
 	int i, j, same;

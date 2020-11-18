@@ -1,5 +1,11 @@
 #include "hsh.h"
 
+
+/**
+ * main - main function of the hsh shell
+ * Return: 0 when it works
+ **/
+
 int main(void)
 {
 	char **args;

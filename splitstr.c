@@ -2,7 +2,7 @@
 /**
  * splitstr - create an array from a string
  * @str: a string
- * Return: an array 
+ * Return: an array
  **/
 
 char **splitstr(char *str)
@@ -33,7 +33,7 @@ char **splitstr(char *str)
 		ary[i] = malloc(sizeof(char) * _strlen(token));
 		if (ary[i] == NULL)
 		{
-			for(j = 0; j < i; j++)
+			for (j = 0; j < i; j++)
 				free(ary[j]);
 			free(ary);
 		}
@@ -43,5 +43,5 @@ char **splitstr(char *str)
 		i++;
 	}
 	ary[i] = NULL;
-	return ary;
+	return (ary);
 }

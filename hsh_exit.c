@@ -1,5 +1,11 @@
 #include "hsh.h"
 
+/**
+ * hsh_exit - exit builtin function
+ * @str: an input string
+ * Return: nothing
+ **/
+
 void hsh_exit(char *str)
 {
 	char *result = "exit";
