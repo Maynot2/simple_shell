@@ -23,6 +23,7 @@ int _strlen(char *);
 char **splitstr(char *);
 char **array_PATH(char **env, char **buf);
 int builtin(char *str);
-void hsh_exit();
+void hsh_exit(char *str);
+void hsh_env();
 
 #endif

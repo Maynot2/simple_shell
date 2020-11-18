@@ -12,15 +12,11 @@ int main(void)
 		display_prompt();
 		line = hsh_readline();
 		args = splitstr(line);
-		builtin(args[0]);
-		if (line == NULL)
-		{
-			printf("OK");
-			return (1);
-		}
+		hsh_exit(args[0]);
 		id = fork();
 		if (id == 0)
 		{
+			builtin(args[0]);
 			hsh_exec_cmd(args);
 			free(line);
 			free(args);
@@ -30,6 +26,5 @@ int main(void)
 			wait(NULL);
 		}
 	}
-
 	return (0);
 }

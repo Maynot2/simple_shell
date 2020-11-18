@@ -3,7 +3,8 @@
 int builtin(char *str)
 {
 	type_d cases[] = {
-		{"exit", hsh_exit}, {NULL, NULL}};
+		{"exit", hsh_exit}, {"env", hsh_env},
+		{NULL, NULL}};
 
 	int i, j, same;
 
