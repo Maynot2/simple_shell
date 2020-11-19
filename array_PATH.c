@@ -14,6 +14,7 @@ char **array_PATH(char **env, char **buf)
 	char *token;
 	char **arr;
 
+
 	for (j = 0; strstr(env[j], "PATH=") == NULL ; j++)
 	;
 	for (k = 0; env[j][k] != '\0'; k++)
@@ -28,7 +29,7 @@ char **array_PATH(char **env, char **buf)
 	token = strtok(NULL, delim);
 	for (j = 0; token != NULL; token = strtok(NULL, delim))
 	{
-		arr[j] = malloc(sizeof(char) * (_strlen(token) + _strlen(*buf)+ 2));
+		arr[j] = malloc(sizeof(char) * (_strlen(token) + _strlen(*buf) + 2));
 		for (k = 0; k < _strlen(token); k++)
 			arr[j][k] = token[k];
 		arr[j][k] = '/';
