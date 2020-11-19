@@ -21,14 +21,13 @@ int main(int argc, char *argv[], char *envp[])
 		display_prompt();
 		line = hsh_readline();
 		args = splitstr(line);
-		hsh_exit(args[0]);
+		hsh_exit(args);
 		id = fork();
 		if (id == 0)
 		{
 			builtin(args[0], envp);
 			hsh_exec_cmd(args, envp);
 			free(line);
-			free(args);
 		}
 		else
 		{

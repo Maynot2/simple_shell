@@ -9,32 +9,32 @@
 
 char **array_PATH(char **env, char **buf)
 {
-	int i, j, k, l, len_token, len_buf, len_tot;
+	int j, k, l = 0;
 	char *delim = ":=";
 	char *token;
 	char **arr;
 
-
-	for (i = 0; strstr(env[i], "PATH=") == NULL ; i++)
+	for (j = 0; strstr(env[j], "PATH=") == NULL ; j++)
 	;
-
-	arr = malloc(sizeof(char *) * 15);
-
-	token = strtok(env[i], delim);
+	for (k = 0; env[j][k] != '\0'; k++)
+	{
+		if (env[j][k] == ':')
+		{
+			l++;
+		}
+	}
+	token = strtok(env[j], delim);
+	arr = malloc(sizeof(char *) * k);
 	token = strtok(NULL, delim);
-	len_buf = strlen(*buf);
-
 	for (j = 0; token != NULL; token = strtok(NULL, delim))
 	{
-		len_token = strlen(token);
-		len_tot = (len_token + len_buf);
-		arr[j] = malloc(sizeof(char) * 1000);
-		for (k = 0; k < len_token; k++)
+		arr[j] = malloc(sizeof(char) * (_strlen(token) + _strlen(*buf)+ 2));
+		for (k = 0; k < _strlen(token); k++)
 			arr[j][k] = token[k];
 		arr[j][k] = '/';
 		k++;
 		l = 0;
-		for (; k <= len_tot ; k++)
+		for (; k <= (_strlen(token) + _strlen(*buf)) ; k++)
 		{
 			arr[j][k] = (*buf)[l];
 			l++;
@@ -44,4 +44,3 @@ char **array_PATH(char **env, char **buf)
 	}
 	return (arr);
 }
-

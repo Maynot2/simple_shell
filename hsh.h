@@ -20,12 +20,14 @@ typedef struct format
 void display_prompt(void);
 char **splitstr(char *);
 char *hsh_readline(void);
-void hsh_exec_cmd(char **arguments, char **envp);
+int hsh_exec_cmd(char **arguments, char **envp);
 int _strlen(char *);
 char **splitstr(char *);
 char **array_PATH(char **env, char **buf);
+void free_arr(char**);
 int builtin(char *str, char **environ);
-void hsh_exit(char *str);
+void hsh_exit(char **str);
 void hsh_env(char **environ);
+void hsh_sigint(int a);
 
 #endif

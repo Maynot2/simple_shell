@@ -19,5 +19,6 @@ void hsh_env(char **environ)
 		}
 		putchar('\n');
 	}
-	kill(getpid(), SIGTERM);
+	exit (0);
+	//kill(getpid(), SIGTERM);
 }

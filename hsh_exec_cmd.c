@@ -7,7 +7,7 @@
  * Return: Nothing
  */
 
-void hsh_exec_cmd(char **arguments, char **environ)
+int hsh_exec_cmd(char **arguments, char **environ)
 {
 
 	int i;
@@ -26,6 +26,8 @@ void hsh_exec_cmd(char **arguments, char **environ)
 			if (execve(arguments[0], arguments, NULL) == -1)
 			{
 				perror(arguments[0]);
+				free_arr(arguments);
+				free_arr(paths);
 				kill(getpid(), SIGTERM);
 			}
 		}
@@ -34,6 +36,9 @@ void hsh_exec_cmd(char **arguments, char **environ)
 	if (execve(arguments[0], arguments, NULL) == -1)
 	{
 		perror(arguments[0]);
+		free_arr(arguments);
+		free_arr(paths);
 		kill(getpid(), SIGTERM);
 	}
+	return (0);
 }
