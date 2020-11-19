@@ -1,7 +1,6 @@
 #ifndef HSH_H
 #define HSH_H
 
-#define UNUSED(x) (void)x;
 
 #include <unistd.h>
 #include <stdio.h>
@@ -26,7 +25,7 @@ char **splitstr(char *);
 char **array_PATH(char **env, char **buf);
 void free_arr(char**);
 int builtin(char *str, char **environ);
-void hsh_exit(char **str);
+void hsh_exit(char *str);
 void hsh_env(char **environ);
 void hsh_sigint(int a);
 

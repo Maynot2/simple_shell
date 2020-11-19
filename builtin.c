@@ -19,7 +19,7 @@ int builtin(char *str, char **environ)
 	i = 0;
 	while (cases[i].type)
 	{
-		for (j = 0; str[j] != '\0'; j++)
+		for (j = 0; cases[i].type[j] != '\0'; j++)
 		{
 			if (str[j] == cases[i].type[j])
 				same = 1;

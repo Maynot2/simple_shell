@@ -20,11 +20,11 @@ int main(int argc, char *argv[], char *envp[])
 	{
 		display_prompt();
 		line = hsh_readline();
-		args = splitstr(line);
-		hsh_exit(args);
+		hsh_exit(line);
 		id = fork();
 		if (id == 0)
 		{
+			args = splitstr(line);
 			builtin(args[0], envp);
 			hsh_exec_cmd(args, envp);
 			free(line);

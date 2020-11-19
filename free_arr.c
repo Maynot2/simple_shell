@@ -1,5 +1,10 @@
 #include "hsh.h"
 
+/**
+ * free_arr - free an array
+ * @arr: a 2D array
+ * Return: Nothing
+ **/
 
 void free_arr(char **arr)
 {
