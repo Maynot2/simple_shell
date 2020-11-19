@@ -5,9 +5,8 @@
  * Return: an array
  **/
 
-char **splitstr(char *str)
+char **splitstr(char *str, char **ary)
 {
-	char **ary;
 	char *token;
 	char *del = " \t\r\n\v\f";
 	int i, j;
@@ -16,7 +15,6 @@ char **splitstr(char *str)
 	if (!str)
 		return (NULL);
 
-	ary = malloc(sizeof(char *) * size);
 	if (!ary)
 		exit(1);
 
@@ -37,7 +35,6 @@ char **splitstr(char *str)
 				free(ary[j]);
 			free(ary);
 		}
-
 		ary[i] = token;
 		token = strtok(NULL, del);
 		i++;

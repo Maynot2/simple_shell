@@ -16,6 +16,8 @@ int main(int argc, char *argv[], char *envp[])
 	int status = 1;
 	pid_t id;
 
+	args = malloc(sizeof(char *) * 8);
+
 	while (status)
 	{
 		display_prompt();
@@ -24,7 +26,7 @@ int main(int argc, char *argv[], char *envp[])
 		id = fork();
 		if (id == 0)
 		{
-			args = splitstr(line);
+			splitstr(line, args);
 			builtin(args[0], envp);
 			hsh_exec_cmd(args, envp);
 			free(line);

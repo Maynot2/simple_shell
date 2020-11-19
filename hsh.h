@@ -17,11 +17,10 @@ typedef struct format
 } type_d;
 
 void display_prompt(void);
-char **splitstr(char *);
 char *hsh_readline(void);
 int hsh_exec_cmd(char **arguments, char **envp);
 int _strlen(char *);
-char **splitstr(char *);
+char **splitstr(char *, char **);
 char **array_PATH(char **env, char **buf);
 void free_arr(char**);
 int builtin(char *str, char **environ);
