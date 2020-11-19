@@ -17,7 +17,7 @@ typedef struct format
 } type_d;
 
 void display_prompt(void);
-char *hsh_readline(void);
+char *hsh_readline(char **);
 int hsh_exec_cmd(char **arguments, char **envp);
 int _strlen(char *);
 char **splitstr(char *, char **);

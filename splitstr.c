@@ -39,6 +39,5 @@ char **splitstr(char *str, char **ary)
 		token = strtok(NULL, del);
 		i++;
 	}
-	ary[i] = NULL;
 	return (ary);
 }

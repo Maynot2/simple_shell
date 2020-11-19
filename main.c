@@ -16,12 +16,13 @@ int main(int argc, char *argv[], char *envp[])
 	int status = 1;
 	pid_t id;
 
+	line = malloc(sizeof(char) * 1000);
 	args = malloc(sizeof(char *) * 8);
 
 	while (status)
 	{
 		display_prompt();
-		line = hsh_readline();
+		hsh_readline(&line);
 		hsh_exit(line);
 		id = fork();
 		if (id == 0)
