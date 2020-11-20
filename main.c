@@ -10,7 +10,7 @@ int hsh_exec(char **args, char **env)
 
 int hsh_exit(builtargs_t args)
 {
-	if (strcmp(args.cmd, "exit") == 0)
+	if (_strcmp(args.cmd, "exit") == 0)
 			return (-1);
 	return (0);
 }
@@ -44,7 +44,7 @@ int hsh_builtins(char *cmd, char **env)
 	i = 0;
 	while (cmds[i].cmd)
 	{
-		if (strcmp(cmd, cmds[i].cmd) == 0)
+		if (_strcmp(cmd, cmds[i].cmd) == 0)
 		{
 			return (cmds[i].f(args));
 		}
