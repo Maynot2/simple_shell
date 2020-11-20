@@ -94,9 +94,12 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * splitstr - create an array from a string
- * @str: a string
- * Return: an array
+ * _splitstr - Creates an array of strings from a string given e delimiter.
+ * @str: A string.
+ * @del: A string.
+ *
+ * Return: An array of strings.
+ *
  **/
 
 char **_splitstr(char *str, char *del)
@@ -125,7 +128,7 @@ char **_splitstr(char *str, char *del)
 		ary[i] = malloc(sizeof(char) * strlen(token));
 		if (ary[i] == NULL)
 		{
-			for(j = 0; j < i; j++)
+			for (j = 0; j < i; j++)
 				free(ary[j]);
 			free(ary);
 		}
@@ -136,4 +139,39 @@ char **_splitstr(char *str, char *del)
 	}
 	ary[i] = NULL;
 	return (ary);
+}
+
+/**
+ * _strstr - Finds the first occurrence of the substring needle in string
+ * haystack
+ * @haystack: A pointer to a string.
+ * @needle: A pointer to a string.
+ *
+ * Return: A pointer to a string on success.
+ *         NULL on error
+ *
+ */
+
+char *_strstr(char *haystack, char *needle)
+{
+	int i = 0, j;
+	int nd_len = _strlen(needle);
+
+	if (!*needle)
+		return (haystack);
+
+	while (*(haystack + i))
+	{
+		j = 0;
+		while (*(haystack + i + j) == *(needle + j))
+		{
+			if (nd_len - 1 == j)
+			{
+				return (haystack + i);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }
