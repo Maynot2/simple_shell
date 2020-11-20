@@ -22,7 +22,7 @@ int hsh_env(builtargs_t args)
 		i = 0;
 		while(args.env[i])
 		{
-			puts(args.env[i]);
+			_puts(args.env[i]);
 			i++;
 		}
 	return(1);

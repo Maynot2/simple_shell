@@ -32,7 +32,7 @@ int _puts(char *s)
 
 	str = _strcat(s, "\n");
 
-	count = write(STDOUT_FILENO, &str, _strlen(str));
+	count = write(STDOUT_FILENO, str, _strlen(str));
 
 	free(str);
 	return (count);
