@@ -28,6 +28,7 @@ int _strlen(char *);
 char *_strcat(char *, char *);
 char **_splitstr(char *, char *);
 int _strcmp(char *, char *);
+char **formatcmd(char **, char *);
 char **abs_cmd_paths(char **, char *);
 int builtin(char *str); // to be removed
 int hsh_builtins(char *, char **);

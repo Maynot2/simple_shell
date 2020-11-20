@@ -1,5 +1,12 @@
 #include "hsh.h"
 
+/**
+ * getPATH - Finds the path of the current environement.
+ * @env: An array of all the environement variables.
+ *
+ * Return: The path as a string.
+ */
+
 char *getPATH(char **env)
 {
 	int i, j, k;
@@ -8,17 +15,17 @@ char *getPATH(char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (strstr(env[i], "PATH="))
+		if (_strstr(env[i], "PATH="))
 		{
-			path = malloc(sizeof(char) * (strlen(env[i]) + 1 - 5));
+			path = malloc(sizeof(char) * (_strlen(env[i]) + 1 - 5));
 			if (path == NULL)
 				exit(1);
 			k = 0;
-			while(env[i][k] != '=')
+			while (env[i][k] != '=')
 				k++;
 			k++;
 			j = 0;
-			while(env[i][j + k])
+			while (env[i][j + k])
 			{
 				path[j] = env[i][j + k];
 				j++;
@@ -31,13 +38,13 @@ char *getPATH(char **env)
 }
 
 /**
- * array_PATH - concat path env to an array
- * @env: the env vars
- * @buf: the array
+ * formatcmd - concat path env to an array
+ * @paths: An array of directories absolute paths.
+ * @arg: the command.
  * Return: a new 2D array
  **/
 
-char **formatpath(char **paths, char *arg)
+char **formatcmd(char **paths, char *arg)
 {
 	int i, j, k, lenpath, lenarg;
 	char **ary;
@@ -45,10 +52,10 @@ char **formatpath(char **paths, char *arg)
 	ary = malloc(sizeof(char *) * arylen(paths));
 	for (i = 0; paths[i] != NULL; i++)
 	{
-		lenpath = strlen(paths[i]);
-		lenarg = strlen(arg);
+		lenpath = _strlen(paths[i]);
+		lenarg = _strlen(arg);
 
-		ary[i] = malloc(sizeof(char) * (lenpath+lenarg+1));
+		ary[i] = malloc(sizeof(char) * (lenpath + lenarg + 1));
 		for (j = 0; j != lenpath; j++)
 		{
 			ary[i][j] = paths[i][j];
@@ -65,6 +72,14 @@ char **formatpath(char **paths, char *arg)
 	return (ary);
 }
 
+/**
+ * abs_cmd_paths - Builds the different possible absolute path for a command.
+ * @env: An array of all the environement variables.
+ * @cmd: The command we want to try.
+ *
+ * Return: An array of all the possible paths.
+ */
+
 char **abs_cmd_paths(char **env, char *cmd)
 {
 	char *path;
@@ -73,7 +88,7 @@ char **abs_cmd_paths(char **env, char *cmd)
 
 	path = getPATH(env);
 	dirs = _splitstr(path, ":");
-	cmds = formatpath(dirs, cmd);
+	cmds = formatcmd(dirs, cmd);
 
 	free(dirs);
 	free(path);
@@ -83,6 +98,7 @@ char **abs_cmd_paths(char **env, char *cmd)
 /**
  * hsh_exec_cmd - exec a command
  * @arguments: array of arguments
+ * @env: An array of all the environement variables.
  * Return: Nothing
  */
 
