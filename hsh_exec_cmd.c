@@ -49,26 +49,31 @@ char **formatcmd(char **paths, char *arg)
 	int i, j, k, lenpath, lenarg;
 	char **ary;
 
-	ary = malloc(sizeof(char *) * arylen(paths));
+	ary = malloc(sizeof(char *) * (arylen(paths) + 1));
+	if (!ary)
+		return NULL;
+
 	for (i = 0; paths[i] != NULL; i++)
 	{
 		lenpath = _strlen(paths[i]);
 		lenarg = _strlen(arg);
 
-		ary[i] = malloc(sizeof(char) * (lenpath + lenarg + 1));
+		ary[i] = malloc(sizeof(char) * (lenpath + lenarg + 2));
+		//deal with alloc failure here
 		for (j = 0; j != lenpath; j++)
 		{
 			ary[i][j] = paths[i][j];
 		}
 		ary[i][j] = '/';
 		j++;
-		k = 0;
-		for (; arg[k] != '\0'; k++)
+		for (k = 0; arg[k] != '\0'; k++)
 		{
 			ary[i][j] = arg[k];
 			j++;
 		}
+		ary[i][j] = '\0';
 	}
+	ary[i] = NULL;
 	return (ary);
 }
 
@@ -110,6 +115,13 @@ int hsh_exec_cmd(char **arguments, char **env)
 	pid_t id;
 
 	paths = abs_cmd_paths(env, arguments[0]);
+
+	i = 0;
+	while (paths[i])
+	{
+		printf("%s\n", paths[i]);
+		i++;
+	}
 
 	id = fork();
 
