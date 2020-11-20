@@ -116,13 +116,6 @@ int hsh_exec_cmd(char **arguments, char **env)
 
 	paths = abs_cmd_paths(env, arguments[0]);
 
-	i = 0;
-	while (paths[i])
-	{
-		printf("%s\n", paths[i]);
-		i++;
-	}
-
 	id = fork();
 
 	if (id == 0)
