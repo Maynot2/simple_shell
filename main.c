@@ -8,51 +8,6 @@ int hsh_exec(char **args, char **env)
 	return (hsh_exec_cmd(args, env));
 }
 
-int hsh_exit(builtargs_t args)
-{
-	if (_strcmp(args.cmd, "exit") == 0)
-			return (-1);
-	return (0);
-}
-
-int hsh_env(builtargs_t args)
-{
-		int i;
-
-		i = 0;
-		while(args.env[i])
-		{
-			_puts(args.env[i]);
-			i++;
-		}
-	return(1);
-}
-
-int hsh_builtins(char *cmd, char **env)
-{
-	int i;
-	builtargs_t args = {
-		cmd,
-		env
-	};
-	builtcmd_t cmds[] = {
-		{"exit", hsh_exit},
-		{"env", hsh_env},
-		{NULL, NULL}
-	};
-
-	i = 0;
-	while (cmds[i].cmd)
-	{
-		if (_strcmp(cmd, cmds[i].cmd) == 0)
-		{
-			return (cmds[i].f(args));
-		}
-		i++;
-	}
-	return (0);
-}
-
 int main(int argc, char **argv, char **envp)
 {
 	char **args;

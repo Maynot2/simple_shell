@@ -29,8 +29,9 @@ char *_strcat(char *, char *);
 char **_splitstr(char *, char *);
 int _strcmp(char *, char *);
 char **abs_cmd_paths(char **, char *);
-int builtin(char *str);
+int builtin(char *str); // to be removed
+int hsh_builtins(char *, char **);
 int hsh_exit(builtargs_t);
-int hsh_env();
+int hsh_env(builtargs_t);
 
 #endif
