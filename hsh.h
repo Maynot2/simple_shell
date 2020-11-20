@@ -34,5 +34,7 @@ int builtin(char *str); // to be removed
 int hsh_builtins(char *, char **);
 int hsh_exit(builtargs_t);
 int hsh_env(builtargs_t);
+void *_realloc(void *, unsigned int, unsigned int);
+void free_str_ary(char **);
 
 #endif
