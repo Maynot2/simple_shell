@@ -1,10 +1,5 @@
 #include "hsh.h"
 
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 int hsh_exec(char **args, char **env)
 {
 	if (hsh_builtins(args[0], env))

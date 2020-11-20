@@ -25,7 +25,7 @@ void display_prompt(void);
 char **splitstr(char *);
 int hsh_exec_cmd(char **, char **);
 int _strlen(char *);
-int _strcat(char *, char *);
+char *_strcat(char *, char *);
 char **_splitstr(char *, char *);
 char **abs_cmd_paths(char **, char *);
 int builtin(char *str);
