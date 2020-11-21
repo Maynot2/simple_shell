@@ -108,6 +108,7 @@ char **_splitstr(char *str, char *del)
 	char **tmp;
 	char *token;
 	int i, j;
+	int old_size;
 	int size = 8;
 
 	ary = malloc(sizeof(char *) * size);
@@ -121,8 +122,9 @@ char **_splitstr(char *str, char *del)
 	{
 		if (i >= size - 1)
 		{
+			old_size = sizeof(char *) * size;
 			size += size;
-			tmp = realloc(ary, sizeof(char *) * size);
+			tmp = _realloc(ary, old_size, sizeof(char *) * size);
 			ary = tmp;
 		}
 		ary[i] = malloc(sizeof(char) * strlen(token));
