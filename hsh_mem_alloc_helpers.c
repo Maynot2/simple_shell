@@ -65,12 +65,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 void free_str_ary(char **ary)
 {
 	int i;
-
-	i = 0;
-	while (ary[i])
+	if (ary)
 	{
-		free(ary[i]);
-		i++;
+		i = 0;
+		while (ary[i])
+		{
+			free(ary[i]);
+			i++;
+		}
 	}
 	free(ary);
 }

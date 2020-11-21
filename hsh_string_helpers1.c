@@ -127,15 +127,8 @@ char **_splitstr(char *str, char *del)
 			tmp = _realloc(ary, old_size, sizeof(char *) * size);
 			ary = tmp;
 		}
-		ary[i] = malloc(sizeof(char) * strlen(token));
-		if (ary[i] == NULL)
-		{
-			for (j = 0; j < i; j++)
-				free(ary[j]);
-			free(ary);
-		}
-
 		ary[i] = token;
+
 		token = strtok(NULL, del);
 		i++;
 	}

@@ -30,7 +30,7 @@ int hsh_exec(char **args, char **env)
 
 int main(int argc, char **argv, char **envp)
 {
-	char **args;
+	char **args = NULL;
 	char *line = NULL;
 	size_t size = 0;
 	int status = 1;
