@@ -22,7 +22,6 @@ typedef struct builtcmd
 } builtcmd_t;
 
 void display_prompt(void);
-char **_splitstr(char *, char *);
 int hsh_exec_cmd(char **, char **);
 int _strlen(char *);
 char *_strstr(char *, char *);
@@ -36,9 +35,11 @@ int hsh_builtins(char *, char **);
 int hsh_exit(builtargs_t);
 int hsh_env(builtargs_t);
 void *_realloc(void *, unsigned int, unsigned int);
-void free_str_ary(char **);
+void free_str_ary(char **, int);
 int arylen(char **);
 int _putchar(char);
 int _puts(char *s);
+int count_elems(char *, char *);
+int isdel(char);
 
 #endif

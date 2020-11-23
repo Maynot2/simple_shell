@@ -104,14 +104,11 @@ int _strcmp(char *s1, char *s2)
 
 char **_splitstr(char *str, char *del)
 {
-	char **ary;
-	char **tmp;
+	char **ary = NULL;
 	char *token;
 	int i, j;
-	int old_size;
-	int size = 8;
 
-	ary = malloc(sizeof(char *) * size);
+	ary = malloc(sizeof(char *) * (count_elems(str, del) + 1));
 	if (!ary)
 		exit(1);
 
@@ -120,14 +117,15 @@ char **_splitstr(char *str, char *del)
 	i = 0;
 	while (token)
 	{
-		if (i >= size - 1)
+		ary[i] = malloc(sizeof(char) * _strlen(token) + 1);
+
+		j = 0;
+		while (token[j])
 		{
-			old_size = sizeof(char *) * size;
-			size += size;
-			tmp = _realloc(ary, old_size, sizeof(char *) * size);
-			ary = tmp;
+			ary[i][j] = token[j];
+			j++;
 		}
-		ary[i] = token;
+		ary[i][j] = '\0';
 
 		token = strtok(NULL, del);
 		i++;

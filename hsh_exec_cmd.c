@@ -10,14 +10,19 @@
 char *getPATH(char **env)
 {
 	int i, j, k;
-	char *path;
+	char *path = NULL;
 
 	i = 0;
 	while (env[i])
 	{
 		if (_strstr(env[i], "PATH="))
 		{
-			path = malloc(sizeof(char) * (_strlen(env[i]) + 1 - 5));
+			if (_strstr(env[i], "_PATH"))
+			{
+				i++;
+				continue;
+			}
+			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
 			if (path == NULL)
 				exit(1);
 			k = 0;
@@ -51,7 +56,10 @@ char **formatcmd(char **paths, char *arg)
 
 	ary = malloc(sizeof(char *) * (arylen(paths) + 1));
 	if (!ary)
-		return NULL;
+	{
+		perror("Memory Allocation Error");
+		return (NULL);
+	}
 
 	for (i = 0; paths[i] != NULL; i++)
 	{
@@ -59,7 +67,11 @@ char **formatcmd(char **paths, char *arg)
 		lenarg = _strlen(arg);
 
 		ary[i] = malloc(sizeof(char) * (lenpath + lenarg + 2));
-		//deal with alloc failure here
+		if (!ary[i])
+		{
+			perror("Memory Allocation Error");
+			free_str_ary(ary, i);
+		}
 		for (j = 0; j != lenpath; j++)
 		{
 			ary[i][j] = paths[i][j];
@@ -95,8 +107,8 @@ char **abs_cmd_paths(char **env, char *cmd)
 	dirs = _splitstr(path, ":");
 	cmds = formatcmd(dirs, cmd);
 
-	free(dirs);
 	free(path);
+	free_str_ary(dirs, arylen(dirs));
 	return (cmds);
 }
 
@@ -125,7 +137,8 @@ int hsh_exec_cmd(char **arguments, char **env)
 		{
 			if (stat(paths[i], &st) == 0)
 			{
-				arguments[0] = paths[i];
+				arguments[0] = strdup(paths[i]);
+				free_str_ary(paths, arylen(paths));
 				if (execve(arguments[0], arguments, NULL) == -1)
 				{
 					perror(arguments[0]);
@@ -135,6 +148,7 @@ int hsh_exec_cmd(char **arguments, char **env)
 			}
 			i++;
 		}
+		free_str_ary(paths, arylen(paths));
 		if (execve(arguments[0], arguments, NULL) == -1)
 		{
 			perror(arguments[0]);
@@ -144,6 +158,7 @@ int hsh_exec_cmd(char **arguments, char **env)
 	}
 	else
 	{
+		free_str_ary(paths, arylen(paths));
 		wait(NULL);
 	}
 }

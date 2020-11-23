@@ -46,8 +46,8 @@ int main(int argc, char **argv, char **envp)
 		args = _splitstr(line, " \t\r\n\v\f");
 		if (args[0])
 			status = hsh_exec(args, envp);
+		free_str_ary(args, arylen(args));
 	}
 	free(line);
-	free(args);
 	return (0);
 }
