@@ -32,7 +32,7 @@ $
 
 You can launch programs directly with the absolute path.\
 This shell has the $PATH env, you can launch binaries of your path from anywhere (like the example).\
-Some builtins commands are available : exit, env.\
+Some builtins commands are available : exit, env.
 
 ## Authors
 
