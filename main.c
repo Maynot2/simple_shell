@@ -24,6 +24,7 @@ int hsh_exec(char **args, char **env)
 /**
   * handle_sigint - Prints new line and redisplay prompt after signal
   * inturption is triggered by ctrl-c
+  * @sig: An integer.
   *
   * Return nothing.
   */
