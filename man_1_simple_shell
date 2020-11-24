@@ -1,0 +1,56 @@
+.TH SIMPLE_SHELL 1 "25/11/2020" "version 1.0"
+.AT 1
+.SH NAME
+HSH \- Simple Shell
+.SH SYNOPSIS
+.nf
+.ft B
+hsh
+[command] [options ...]
+.ft R
+.fi
+.SH DESCRIPTION
+.B HSH executes commands read from the standard input or from a file stdout.this Simple shell is a kind of Bourne Shell.It works without any option because it's a more simple shell.HSH doesn't have all the bashs builtins to, because we didn't want to complex the simple shell. Hsh can execute binaries, scripts from anywhere if there are in a folder of the environnement variable $PATH. You can execute only one binary, script per line. Hsh can takes options from commands.
+.PP
+.SH OPTIONS:
+Simple Shell doesn't take any options.
+.SH EXAMPLES:
+.PP
+.IR Interactive:
+.PP
+.RE
+[user@computer]:simple_shell$ ./hsh
+.RE
+$ ls -l
+.RE
+-rw-rw-r-- 1 user user   183 Nov 23 17:43 file1
+.RE
+-rw-rw-r-- 1 user user   305 Nov 23 17:43 file2
+.RE
+drwxrwxr-x  3 user user 4096 Nov  1 11:17 folder1
+.RE
+$
+.PP
+.IR Non-Interactive:
+.PP
+[user@computer]:simple_shell$ echo ls | ./hsh
+.RE
+$ file1 file2 folder1
+$
+.PP
+.SH BUILTINS
+.B Two builtins commands are available
+.PP
+.IR env :
+Print the environnement variables to the Standard output
+.RE
+.IR exit :
+Exit the Simple Shell
+.PP
+.SH SEE ALSO
+bash(1)
+.SH BUGS
+No Known Bugs
+.SH AUTHORS
+Paul MANOT and Gregory ARTHUS
+
