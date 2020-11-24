@@ -108,10 +108,10 @@ char *_strdup(char *str)
 	char *str_cpy;
 	int i;
 
-	if (!str)
+	if(!str)
 		return (NULL);
 
-	str_cpy = malloc(sizeof(*str_cpy) * (_strlen(str) + 1));
+	str_cpy = malloc(sizeof(char *) * (_strlen(str) + 1));
 	if (!str_cpy)
 	{
 		perror("Memory Allocation Error");

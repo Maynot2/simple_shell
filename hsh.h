@@ -44,5 +44,6 @@ int isdel(char, const char*);
 char *_strtok1(char *, const char *);
 char *_strtok2(char *, const char *);
 void handle_sigint(int);
+char *_strdup(char *);
 
 #endif

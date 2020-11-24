@@ -117,7 +117,7 @@ char **_splitstr(char *str, char *del)
 	i = 0;
 	while (token)
 	{
-		ary[i] = malloc(sizeof(char) * _strlen(token) + 1)
+		ary[i] = malloc(sizeof(char) * _strlen(token) + 1);
 
 		j = 0;
 		while (token[j])

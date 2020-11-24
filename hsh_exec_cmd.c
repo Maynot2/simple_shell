@@ -23,8 +23,11 @@ char *getPATH(char **env)
 				continue;
 			}
 			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
-			if (path == NULL)
-				exit(1);
+			if (!path)
+			{
+				perror("Memory Allocation Error");
+				return (NULL);
+			}
 			k = 0;
 			while (env[i][k] != '=')
 				k++;
