@@ -23,11 +23,11 @@ Simple Shell doesn't take any options.
 .RE
 $ ls -l
 .RE
--rw-rw-r-- 1 greg greg   183 Nov 23 17:43 file1
+-rw-rw-r-- 1 user user   183 Nov 23 17:43 file1
 .RE
--rw-rw-r-- 1 greg greg   305 Nov 23 17:43 file2
+-rw-rw-r-- 1 user user   305 Nov 23 17:43 file2
 .RE
-drwxrwxr-x  3 greg greg 4096 Nov  1 11:17 folder1
+drwxrwxr-x  3 user user 4096 Nov  1 11:17 folder1
 .RE
 $
 .PP
