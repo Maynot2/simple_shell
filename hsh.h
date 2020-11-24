@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include<signal.h>
 
 typedef struct builtargs
 {
@@ -30,7 +31,6 @@ char **_splitstr(char *, char *);
 int _strcmp(char *, char *);
 char **formatcmd(char **, char *);
 char **abs_cmd_paths(char **, char *);
-int builtin(char *str); // to be removed
 int hsh_builtins(char *, char **);
 int hsh_exit(builtargs_t);
 int hsh_env(builtargs_t);
@@ -40,6 +40,9 @@ int arylen(char **);
 int _putchar(char);
 int _puts(char *s);
 int count_elems(char *, char *);
-int isdel(char);
+int isdel(char, const char*);
+char *_strtok1(char *, const char *);
+char *_strtok2(char *, const char *);
+void handle_sigint(int);
 
 #endif

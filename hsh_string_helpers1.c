@@ -112,12 +112,12 @@ char **_splitstr(char *str, char *del)
 	if (!ary)
 		exit(1);
 
-	token = strtok(str, del);
+	token = _strtok2(str, del);
 
 	i = 0;
 	while (token)
 	{
-		ary[i] = malloc(sizeof(char) * _strlen(token) + 1);
+		ary[i] = malloc(sizeof(char) * _strlen(token) + 1)
 
 		j = 0;
 		while (token[j])
@@ -127,7 +127,7 @@ char **_splitstr(char *str, char *del)
 		}
 		ary[i][j] = '\0';
 
-		token = strtok(NULL, del);
+		token = _strtok2(NULL, del);
 		i++;
 	}
 	ary[i] = NULL;

@@ -129,7 +129,6 @@ int hsh_exec_cmd(char **arguments, char **env)
 	paths = abs_cmd_paths(env, arguments[0]);
 
 	id = fork();
-
 	if (id == 0)
 	{
 		i = 0;
@@ -160,5 +159,6 @@ int hsh_exec_cmd(char **arguments, char **env)
 	{
 		free_str_ary(paths, arylen(paths));
 		wait(NULL);
+		return (1);
 	}
 }

@@ -1,17 +1,17 @@
 #include "hsh.h"
 
 /**
-  * isdel - Tests if a given character c is a delimeter.
-  * @c: - A given character.
-  *
-  * Return: 1 on success.
-  *         0 on error.
-  *
-  */
+ * isdel - Tests if a given character c is a delimeter.
+ * @c: A given character.
+ * @dels: A set of delimiters as a string.
+ *
+ * Return: 1 on success.
+ *         0 on error.
+ *
+ */
 
-int isdel(char c)
+int isdel(char c, const char *dels)
 {
-	char dels[] = " \t\r\n\v\f";
 	int i;
 
 	i = 0;
@@ -25,36 +25,27 @@ int isdel(char c)
 }
 
 /**
-  * count_elems - Counts elements of a string str separated by a given set of
-  * delimiters dels.
-  * @str: A given string.
-  * @dels: A string of delimiters.
-  *
-  * Return: The number of elements.
-  */
+ * count_elems - Counts elements of a string str separated by a given set of
+ * delimiters dels.
+ * @str: A given string.
+ * @dels: A string of delimiters.
+ *
+ * Return: The number of elements.
+ */
 
 int count_elems(char *str, char *dels)
 {
-	int i, j;
+	int i;
 	int count = 0;
 
 	i = 0;
 	while (str[i])
 	{
-		j = 0;
-		while (dels[j])
-		{
-			if (str[i] == dels[j] && !isdel(str[i + 1]))
-			{
-				count++;
-				break;
-			}
-			j++;
-		}
+		if (i == 0 && !isdel(str[i], dels))
+			count++;
+		if (!isdel(str[i], dels) && isdel(str[i - 1], dels))
+			count++;
 		i++;
 	}
-	if (isdel(str[i - 1]))
-		return (count);
-	else
-		return (count + 1);
+	return (count);
 }
