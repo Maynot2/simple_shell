@@ -108,7 +108,7 @@ char *_strdup(char *str)
 	char *str_cpy;
 	int i;
 
-	if(!str)
+	if (!str)
 		return (NULL);
 
 	str_cpy = malloc(sizeof(char *) * (_strlen(str) + 1));
