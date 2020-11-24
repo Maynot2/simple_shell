@@ -93,3 +93,36 @@ char *_strtok2(char *str, const char *delims)
 
 	return (token);
 }
+
+/**
+ * _strdup - Creates a copy of a string and return a pointer to the first
+ * character of the newly created string.
+ * @str: The string to be copied
+ *
+ * Return: A copy of the string.
+ *
+ */
+
+char *_strdup(char *str)
+{
+	char *str_cpy;
+	int i;
+
+	if (!str)
+		return (NULL);
+
+	str_cpy = malloc(sizeof(*str_cpy) * (_strlen(str) + 1));
+	if (!str_cpy)
+	{
+		perror("Memory Allocation Error");
+		return (NULL);
+	}
+
+	while (str[i])
+	{
+		str_cpy[i] = str[i];
+		i++;
+	}
+	str_cpy[i] = '\0';
+	return (str_cpy);
+}
