@@ -12,8 +12,11 @@
 
 int hsh_exec(char **args, char **env)
 {
-	if (hsh_builtins(args[0], env))
-		return (hsh_builtins(args[0], env));
+	int ret;
+
+	ret = (hsh_builtins(args[0], env));
+	if (ret)
+		return (ret);
 
 	return (hsh_exec_cmd(args, env));
 }
