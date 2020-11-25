@@ -78,31 +78,22 @@ int hsh_env(builtargs_t args)
 
 int hsh_cd(builtargs_t args)
 {
-	char *dir;
-	int i;
-	size_t size;
+	int i, j;
 
-	size = _strlen(args.cmd[1]);
 	if (args.cmd[1])
 	{
 		if (chdir(args.cmd[1]) != 0)
 			perror(args.cmd[1]);
-		dir = malloc(sizeof(char) * (size + 1));
-		dir = args.cmd[1];
-		getcwd(dir, size);
 	}
 	else
 	{
 		for (i = 0; _strstr(args.env[i], "HOME=") == NULL; i++)
 		;
-		dir = malloc(sizeof(char) * (_strlen(args.env[i]) + 1));
-		dir = args.env[i];
-		dir = _strtok2(dir, "=");
-		dir = _strtok2(NULL, "=");
-		if (chdir(dir) != 0)
-			perror(dir);
-		getcwd(dir, size);
-		args.env[i][4] = '=';
+		for (j = 0; args.env[i][j] != '='; j++)
+		;
+		j++;
+		if (chdir(&args.env[i][j]) != 0)
+			perror(&args.env[i][j]);
 	}
 
 	return (1);
