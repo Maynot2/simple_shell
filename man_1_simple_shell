@@ -8,6 +8,7 @@ HSH \- Simple Shell
 .nf
 .ft B
 hsh
+.RE
 [command] [options ...]
 .ft R
 .fi
