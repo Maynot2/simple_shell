@@ -14,7 +14,7 @@ char *getPATH(char **env)
 
 	while (env[i])
 	{
-		if (strstr(env[i], "PATH=") && env[i][0] == 'P')
+		if (_strstr(env[i], "PATH=") && env[i][0] == 'P')
 		{
 			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
 			if (!path)
