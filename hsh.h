@@ -12,7 +12,7 @@
 
 typedef struct builtargs
 {
-	char *cmd;
+	char **cmd;
 	char **env;
 } builtargs_t;
 
@@ -31,7 +31,7 @@ char **_splitstr(char *, char *);
 int _strcmp(char *, char *);
 char **formatcmd(char **, char *);
 char **abs_cmd_paths(char **, char *);
-int hsh_builtins(char *, char **);
+int hsh_builtins(char **, char **);
 int hsh_exit(builtargs_t);
 int hsh_env(builtargs_t);
 void *_realloc(void *, unsigned int, unsigned int);
@@ -45,5 +45,6 @@ char *_strtok1(char *, const char *);
 char *_strtok2(char *, const char *);
 void handle_sigint(int);
 char *_strdup(char *);
+int hsh_cd(builtargs_t);
 
 #endif

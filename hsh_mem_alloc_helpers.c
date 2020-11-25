@@ -57,7 +57,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 /**
  * free_str_ary - Frees a an array of strings
  * @ary: An array of strings.
- *
+ * @n : an int
  * Return: Nothing.
  *
  */
