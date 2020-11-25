@@ -43,8 +43,11 @@ int count_elems(char *str, char *dels)
 	{
 		if (i == 0 && !isdel(str[i], dels))
 			count++;
-		if (!isdel(str[i], dels) && isdel(str[i - 1], dels))
-			count++;
+		if (i != 0)
+		{
+			if (!isdel(str[i], dels) && isdel(str[i - 1], dels))
+				count++;
+		}
 		i++;
 	}
 	return (count);
