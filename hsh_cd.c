@@ -6,14 +6,17 @@
  * Return: 1 when it works
  **/
 
+
 int hsh_cd(builtargs_t args)
 {
+	_puts(args.cmd[0]);
+	/**
 	char *dir;
-	int i, j;
+	int i;
 	size_t size;
 
 	size = _strlen(args.cmd[1]);
-	if (args.cmd[1] == "-")
+	if (args.cmd[1] == '-')
 	{
 		if (chdir(dir) != 0)
 			perror(dir);
@@ -39,6 +42,6 @@ int hsh_cd(builtargs_t args)
 		getcwd(dir, size);
 		args.env[i][4] = '=';
 	}
-
+	*/
 	return (1);
 }
