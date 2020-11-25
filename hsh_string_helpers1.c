@@ -110,7 +110,10 @@ char **_splitstr(char *str, char *del)
 
 	ary = malloc(sizeof(char *) * (count_elems(str, del) + 1));
 	if (!ary)
-		exit(1);
+	{
+		perror("Memory Allocation Error");
+		return (NULL);
+	}
 
 	token = _strtok2(str, del);
 

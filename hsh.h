@@ -10,11 +10,28 @@
 #include <sys/wait.h>
 #include<signal.h>
 
+/**
+ * struct builtargs - Struct for arguments of builin functions.
+ * @cmd: The name of the command
+ * @env: The environement variables.
+ *
+ * Description: Same as above
+ */
+
 typedef struct builtargs
 {
 	char **cmd;
 	char **env;
 } builtargs_t;
+
+/**
+ * struct builtcmd - Struct to call a specific builtin function given the
+ * matching comand.
+ * @cmd: The name of the command.
+ * @f: The matching function we want to call.
+ *
+ * Description: Same as above
+ */
 
 typedef struct builtcmd
 {

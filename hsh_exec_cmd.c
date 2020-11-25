@@ -9,19 +9,13 @@
 
 char *getPATH(char **env)
 {
-	int i, j, k;
+	int i = 0, j, k;
 	char *path = NULL;
 
-	i = 0;
 	while (env[i])
 	{
-		if (_strstr(env[i], "PATH="))
+		if (_strstr(env[i], "PATH=") && env[i][0] == 'P')
 		{
-			if (_strstr(env[i], "_PATH"))
-			{
-				i++;
-				continue;
-			}
 			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
 			if (!path)
 			{
@@ -35,6 +29,18 @@ char *getPATH(char **env)
 			j = 0;
 			while (env[i][j + k])
 			{
+				if (env[i][j + k] == ':' && env[i][j + k - 1] == ':')
+				{
+					path[j] = '.';
+					j++;
+					break;
+				}
+				if (env[i][j + k] == ':' && j == 0)
+				{
+					path[j] = '.';
+					j++;
+					break;
+				}
 				path[j] = env[i][j + k];
 				j++;
 			}
@@ -44,7 +50,6 @@ char *getPATH(char **env)
 	}
 	return (path);
 }
-
 /**
  * formatcmd - concat path env to an array
  * @paths: An array of directories absolute paths.
