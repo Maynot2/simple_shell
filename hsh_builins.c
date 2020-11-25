@@ -10,12 +10,12 @@
  *        -1 if exit was called.
  */
 
-int hsh_builtins(char *cmd, char **env)
+int hsh_builtins(char **cmd, char **env)
 {
 	int i;
 	builtargs_t args;
 	builtcmd_t cmds[] = {
-		{"exit", hsh_exit},
+		{"exit", hsh_exit}, {"cd", hsh_cd},
 		{"env", hsh_env},
 		{NULL, NULL}
 	};
@@ -26,7 +26,7 @@ int hsh_builtins(char *cmd, char **env)
 	i = 0;
 	while (cmds[i].cmd)
 	{
-		if (_strcmp(cmd, cmds[i].cmd) == 0)
+		if (_strcmp(cmd[0], cmds[i].cmd) == 0)
 		{
 			return (cmds[i].f(args));
 		}
@@ -44,6 +44,7 @@ int hsh_builtins(char *cmd, char **env)
 
 int hsh_exit(builtargs_t args)
 {
+
 	(void)args;
 
 	return (-1);

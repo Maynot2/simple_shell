@@ -14,7 +14,7 @@ int hsh_exec(char **args, char **env)
 {
 	int ret;
 
-	ret = (hsh_builtins(args[0], env));
+	ret = (hsh_builtins(args, env));
 	if (ret)
 		return (ret);
 
