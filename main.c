@@ -34,7 +34,8 @@ void handle_sigint(int sig)
 	(void)sig;
 
 	_putchar('\n');
-	display_prompt();
+	if (isatty(STDIN_FILENO))
+		display_prompt();
 }
 
 /**
@@ -58,11 +59,13 @@ int main(int argc, char **argv, char **envp)
 
 	while (status != -1)
 	{
-		display_prompt();
+		if (isatty(STDIN_FILENO))
+			display_prompt();
 		signal(SIGINT, handle_sigint);
 		if (getline(&line, &size, stdin) == -1)
 		{
-			_putchar('\n');
+			if (isatty(STDIN_FILENO))
+				_putchar('\n');
 			break;
 		}
 		args = _splitstr(line, " \t\r\n\v\f");
