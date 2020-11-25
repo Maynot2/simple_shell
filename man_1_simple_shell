@@ -3,9 +3,12 @@
 .SH NAME
 HSH \- Simple Shell
 .SH SYNOPSIS
+.B include header file "hsh.h"
+.TP
 .nf
 .ft B
 hsh
+.RE
 [command] [options ...]
 .ft R
 .fi
@@ -53,4 +56,6 @@ bash(1)
 No Known Bugs
 .SH AUTHORS
 Paul MANOT and Gregory ARTHUS
-
+.SH COPYRIGHT
+.PP
+Copyright (c) 2020 Paul MANOT && Gregory ARTHUS
