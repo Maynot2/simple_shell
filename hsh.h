@@ -64,6 +64,7 @@ void handle_sigint(int);
 char *_strdup(char *);
 int hsh_cd(builtargs_t);
 int hsh_setenv(builtargs_t args);
+int hsh_unsetenv(builtargs_t args);
 
 
 #endif
