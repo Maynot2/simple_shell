@@ -140,7 +140,7 @@ char *_strtok2(char *str, const char *delims)
 char *_strdup(char *str)
 {
 	static char *str_cpy;
-	char * anchor;
+	char *anchor;
 	int i;
 
 	if (!str)

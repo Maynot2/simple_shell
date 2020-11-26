@@ -14,7 +14,7 @@ char *getPATH(char **env)
 	int i = 0, j, k;
 	char *path = NULL;
 
-	if(!env)
+	if (!env)
 		return (NULL);
 
 	while (env[i])
@@ -55,7 +55,7 @@ char **formatcmd(char **paths, char *arg)
 	int i, j, k, lenpath, lenarg;
 	char **ary;
 
-	if(!paths)
+	if (!paths)
 		return (NULL);
 
 	ary = malloc(sizeof(char *) * (arylen(paths) + 1));
