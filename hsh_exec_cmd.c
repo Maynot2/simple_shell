@@ -1,5 +1,7 @@
 #include "hsh.h"
 
+
+
 /**
  * getPATH - Finds the path of the current environement.
  * @env: An array of all the environement variables.
@@ -114,7 +116,6 @@ char **abs_cmd_paths(char **env, char *cmd)
 	path = getPATH(env);
 	dirs = _splitstr(path, ":");
 	cmds = formatcmd(dirs, cmd);
-
 	free(path);
 	free_str_ary(dirs, arylen(dirs));
 	return (cmds);
@@ -135,7 +136,6 @@ int hsh_exec_cmd(char **arguments, char **env)
 	pid_t id;
 
 	paths = abs_cmd_paths(env, arguments[0]);
-
 	id = fork();
 	if (id == 0)
 	{

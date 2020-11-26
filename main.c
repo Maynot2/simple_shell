@@ -22,12 +22,12 @@ int hsh_exec(char **args, char **env)
 }
 
 /**
-  * handle_sigint - Prints new line and redisplay prompt after signal
-  * inturption is triggered by ctrl-c
-  * @sig: An integer.
-  *
-  * Return nothing.
-  */
+ * handle_sigint - Prints new line and redisplay prompt after signal
+ * inturption is triggered by ctrl-c
+ * @sig: An integer.
+ *
+ * Return nothing.
+ */
 
 void handle_sigint(int sig)
 {
@@ -68,10 +68,13 @@ int main(int argc, char **argv, char **envp)
 				_putchar('\n');
 			break;
 		}
-		args = _splitstr(line, " \t\r\n\v\f");
-		if (args[0])
-			status = hsh_exec(args, envp);
-		free_str_ary(args, arylen(args));
+		if (_isempty(line, " \t\r\n\v\f") != 1)
+		{
+			args = _splitstr(line, " \t\r\n\v\f");
+			if (strlen(args[0]) > 1)
+				status = hsh_exec(args, envp);
+			free_str_ary(args, arylen(args));
+		}
 	}
 	free(line);
 	return (0);

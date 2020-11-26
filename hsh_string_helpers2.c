@@ -1,6 +1,40 @@
 #include "hsh.h"
 
 /**
+ * _isempty - look if str contains valid characters
+ * @str: a string
+ * @del: delimiters
+ * Return: empty or not
+**/
+
+int _isempty(char *str, char *del)
+{
+	int i, j, empty;
+
+	if (str)
+	{
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			for (j = 0; del[j] != '\0'; j++)
+			{
+				if (str[i] == del[j])
+				{
+					empty = 1;
+					break;
+				}
+				else
+				{
+					empty = 0;
+				}
+			}
+			if (empty == 0)
+				return (empty);
+		}
+	}
+	return (empty);
+}
+
+/**
  * _strtok1 - Tokenises a string given a set of delimiters. unlike the real
  * strtok doesn't deal with double separators and separators at the end and
  * start of the string...

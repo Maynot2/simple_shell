@@ -17,7 +17,7 @@ int hsh_builtins(char **cmd, char **env)
 	builtcmd_t cmds[] = {
 		{"exit", hsh_exit}, {"cd", hsh_cd},
 		{"env", hsh_env}, {"setenv", hsh_setenv},
-		{NULL, NULL}
+		{"unsetenv", hsh_unsetenv}, {NULL, NULL}
 	};
 
 	args.cmd = cmd;
