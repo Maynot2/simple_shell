@@ -103,30 +103,31 @@ int hsh_cd(builtargs_t args)
  * hsh_setenv - set an environnement variable
  * @args: struct on args
  * Return: 0 when it works
-**/
+ **/
 
 int hsh_setenv(builtargs_t args)
 {
 	int i, j, k;
-	char *token;
 
-	if (args.cmd[1])
+	if (args.cmd[1] && args.cmd[2])
 	{
-		token = _strtok2(args.cmd[1], "=");
-		for (i = 0; _strstr(args.env[i], token) == NULL; i++)
-		;
-		for (j = 0; args.env[i][j] != '='; j++)
-		;
-		j++;
-
-		token = _strtok2(NULL, "=");
-		k = 0;
-		for (; token[k] != '\0'; k++)
+		i = 0;
+		while (_strstr(args.env[i], args.cmd[1]) == NULL && args.env[i + 1] != NULL)
+			i++;
+		if (_strstr(args.env[i], args.cmd[1]) != NULL)
 		{
-			args.env[i][j] = token[k];
+			for (j = 0; args.env[i][j] != '='; j++)
+				;
 			j++;
+
+			k = 0;
+			for (; args.cmd[2][k] != '\0'; k++)
+			{
+				args.env[i][j] = args.cmd[2][k];
+				j++;
+			}
+			args.env[i][j] = '\0';
 		}
-		args.env[i][j] = '\0';
 	}
 	return (1);
 }
