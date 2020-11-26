@@ -71,7 +71,7 @@ int main(int argc, char **argv, char **envp)
 		if (_isempty(line, " \t\r\n\v\f") != 1)
 		{
 			args = _splitstr(line, " \t\r\n\v\f");
-			if (strlen(args[0]) > 1)
+			if (args[0])
 				status = hsh_exec(args, envp);
 			free_str_ary(args, arylen(args));
 		}
