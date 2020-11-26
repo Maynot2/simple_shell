@@ -21,7 +21,6 @@ char *getPATH(char **env)
 	{
 		if (_strstr(env[i], "PATH=/") && env[i][0] == 'P')
 		{
-			printf("PATH= %s\n", env[i]);
 			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
 			if (!path)
 			{
