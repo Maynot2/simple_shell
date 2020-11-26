@@ -16,7 +16,7 @@ int hsh_builtins(char **cmd, char **env)
 	builtargs_t args;
 	builtcmd_t cmds[] = {
 		{"exit", hsh_exit}, {"cd", hsh_cd},
-		{"env", hsh_env},
+		{"env", hsh_env}, {"setenv", hsh_setenv},
 		{NULL, NULL}
 	};
 
@@ -88,13 +88,45 @@ int hsh_cd(builtargs_t args)
 	else
 	{
 		for (i = 0; _strstr(args.env[i], "HOME=") == NULL; i++)
-		;
+			;
 		for (j = 0; args.env[i][j] != '='; j++)
-		;
+			;
 		j++;
 		if (chdir(&args.env[i][j]) != 0)
 			perror(&args.env[i][j]);
 	}
 
+	return (1);
+}
+
+/**
+ * hsh_setenv - set an environnement variable
+ * @args: struct on args
+ * Return: 0 when it works
+**/
+
+int hsh_setenv(builtargs_t args)
+{
+	int i, j, k;
+	char *token;
+
+	if (args.cmd[1])
+	{
+		token = _strtok2(args.cmd[1], "=");
+		for (i = 0; _strstr(args.env[i], token) == NULL; i++)
+		;
+		for (j = 0; args.env[i][j] != '='; j++)
+		;
+		j++;
+
+		token = _strtok2(NULL, "=");
+		k = 0;
+		for (; token[k] != '\0'; k++)
+		{
+			args.env[i][j] = token[k];
+			j++;
+		}
+		args.env[i][j] = '\0';
+	}
 	return (1);
 }
