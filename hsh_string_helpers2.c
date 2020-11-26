@@ -153,7 +153,7 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	anchor = str_cpy
+	anchor = str_cpy;
 	i = 0;
 	while (str[i])
 	{
