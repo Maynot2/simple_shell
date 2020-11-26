@@ -14,10 +14,14 @@ char *getPATH(char **env)
 	int i = 0, j, k;
 	char *path = NULL;
 
+	if(!env)
+		return (NULL);
+
 	while (env[i])
 	{
-		if (_strstr(env[i], "PATH=") && env[i][0] == 'P')
+		if (_strstr(env[i], "PATH=/") && env[i][0] == 'P')
 		{
+			printf("PATH= %s\n", env[i]);
 			path = malloc(sizeof(*path) * (_strlen(env[i]) + 1 - 5));
 			if (!path)
 			{
@@ -31,18 +35,6 @@ char *getPATH(char **env)
 			j = 0;
 			while (env[i][j + k])
 			{
-				if (env[i][j + k] == ':' && env[i][j + k - 1] == ':')
-				{
-					path[j] = '.';
-					j++;
-					break;
-				}
-				if (env[i][j + k] == ':' && j == 0)
-				{
-					path[j] = '.';
-					j++;
-					break;
-				}
 				path[j] = env[i][j + k];
 				j++;
 			}
@@ -63,6 +55,9 @@ char **formatcmd(char **paths, char *arg)
 {
 	int i, j, k, lenpath, lenarg;
 	char **ary;
+
+	if(!paths)
+		return (NULL);
 
 	ary = malloc(sizeof(char *) * (arylen(paths) + 1));
 	if (!ary)
@@ -122,6 +117,23 @@ char **abs_cmd_paths(char **env, char *cmd)
 }
 
 /**
+  * exec_cmd - Executes a command and deals with the failure if cmd cannot
+  * execute.
+  * @arguments: The command arguments.
+  *
+  * Return: Nothing.
+  */
+
+void exec_cmd(char **arguments)
+{
+	if (execve(arguments[0], arguments, NULL) == -1)
+	{
+		perror(arguments[0]);
+		kill(getpid(), SIGTERM);
+	}
+}
+
+/**
  * hsh_exec_cmd - exec a command
  * @arguments: array of arguments
  * @env: An array of all the environement variables.
@@ -139,6 +151,8 @@ int hsh_exec_cmd(char **arguments, char **env)
 	id = fork();
 	if (id == 0)
 	{
+		if (!paths)
+			exec_cmd(arguments);
 		i = 0;
 		while (paths[i])
 		{
@@ -146,21 +160,13 @@ int hsh_exec_cmd(char **arguments, char **env)
 			{
 				arguments[0] = strdup(paths[i]);
 				free_str_ary(paths, arylen(paths));
-				if (execve(arguments[0], arguments, NULL) == -1)
-				{
-					perror(arguments[0]);
-					kill(getpid(), SIGTERM);
-				}
+				exec_cmd(arguments);
 				return (1);
 			}
 			i++;
 		}
 		free_str_ary(paths, arylen(paths));
-		if (execve(arguments[0], arguments, NULL) == -1)
-		{
-			perror(arguments[0]);
-			kill(getpid(), SIGTERM);
-		}
+		exec_cmd(arguments);
 		return (1);
 	}
 	else

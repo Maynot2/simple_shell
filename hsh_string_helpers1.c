@@ -108,6 +108,9 @@ char **_splitstr(char *str, char *del)
 	char *token;
 	int i, j;
 
+	if (!str)
+		return (NULL);
+
 	ary = malloc(sizeof(char *) * (count_elems(str, del) + 1));
 	if (!ary)
 	{
