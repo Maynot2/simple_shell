@@ -63,5 +63,7 @@ char *_strtok2(char *, const char *);
 void handle_sigint(int);
 char *_strdup(char *);
 int hsh_cd(builtargs_t);
+int hsh_setenv(builtargs_t args);
+
 
 #endif
