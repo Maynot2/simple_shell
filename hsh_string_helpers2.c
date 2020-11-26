@@ -139,7 +139,8 @@ char *_strtok2(char *str, const char *delims)
 
 char *_strdup(char *str)
 {
-	char *str_cpy;
+	static char *str_cpy;
+	char * anchor;
 	int i;
 
 	if (!str)
@@ -152,12 +153,13 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
+	anchor = str_cpy
 	i = 0;
 	while (str[i])
 	{
-		str_cpy[i] = str[i];
+		anchor[i] = str[i];
 		i++;
 	}
-	str_cpy[i] = '\0';
+	anchor[i] = '\0';
 	return (str_cpy);
 }
