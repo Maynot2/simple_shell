@@ -157,7 +157,7 @@ int hsh_exec_cmd(char **arguments, char **env)
 		{
 			if (stat(paths[i], &st) == 0)
 			{
-				arguments[0] = strdup(paths[i]);
+				arguments[0] = _strdup(paths[i]);
 				free_str_ary(paths, arylen(paths));
 				exec_cmd(arguments);
 				return (1);
